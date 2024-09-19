@@ -1,0 +1,184 @@
+{
+  "navbarLogo": "Agri Forecast",
+  "home": "Home",
+  "aboutUs": "About Us",
+  "enterData": "Enter Data",
+  "forecastReport": "Forecast Report",
+  "bufferStock": "Buffer Stock",
+  "contact": "Contact",
+  "login": "Login",
+  "signUp": "Sign Up",
+
+  "heroTitle": "Welcome to Agri Forecast",
+  "heroSubtitle": "Accurate price forecasting for agri-horticultural commodities through advanced AI-ML models.",
+  "getStarted": "Get Started",
+  "keyFeaturesTitle": "Key Features",
+  "feature1": "Accurate price forecasts through AI-ML models.",
+  "feature2": "Buffer stock recommendations based on supply and demand.",
+  "feature3": "Analysis and visualization of historical data and trends.",
+  "feature4": "Custom report generation for market insights.",
+  "feature5": "User-friendly interface with easy navigation.",
+  "keyFeaturesAlt": "Key Features",
+  "howItWorksTitle": "How It Works",
+  "howItWorksStep1": "Enter data for the crop you want to forecast or manage.",
+  "howItWorksStep2": "Submit the data to receive forecasts and recommendations.",
+  "howItWorksStep3": "View detailed forecasts and buffer stock recommendations.",
+  "howItWorksStep4": "Generate reports for decision-making.",
+  "howItWorksAlt": "How It Works",
+  "testimonialsTitle": "What Our Users Say",
+  "testimonial1": "\"This platform has revolutionized the way we plan our market strategy. The price forecasts are highly accurate!\"",
+  "testimonial1Author": "- John Doe, Farmer",
+  "testimonial2": "\"An essential tool for agriculture. It’s user-friendly and incredibly accurate.\"",
+  "testimonial2Author": "- Jane Smith, Market Analyst",
+  "testimonial3": "\"The reporting feature is a game-changer. It has helped me make informed decisions and stay ahead in the market.\"",
+  "testimonial3Author": "- Raj Patel, Trader",
+  "ctaTitle": "Ready to Start Forecasting?",
+  "ctaSubtitle": "Enter your data and get accurate price forecasts today.",
+  "ctaButton": "Enter Data Now",
+
+  "bufferStockTitle": "Buffer Stock Management",
+  "commodity": "Commodity",
+  "selectCommodity": "Select Commodity",
+  "rice": "Rice",
+  "onion": "Onion",
+  "currentStock": "Current Stock",
+  "supplyVolume": "Supply Volume",
+  "supplyVolumePlaceholder": "Enter supply volume",
+  "demandVolume": "Demand Volume",
+  "demandVolumePlaceholder": "Enter demand volume",
+  "state": "State",
+  "district": "District",
+  "season": "Season",
+  "temperature": "Temperature (°C)",
+  "rainfall": "Rainfall (mm)",
+  "transportationCost": "Transportation Cost (INR)",
+  "fertilizersUsed": "Fertilizers Used (Tons)",
+  "pestInfestation": "Pest Infestation (0-10 Scale)",
+  "marketCompetition": "Market Competition (0-10 Scale)",
+  "pricePerKg": "Price per kg (INR)",
+  "submit": "Submit",
+  "reset": "Reset",
+  "error": "Please fill in all required fields.",
+  "predictionResults": "Prediction Results",
+  "predictedPrice": "Predicted Price",
+  "perKg": "per kg",
+  "recommendedStock": "Recommended Stock",
+  "SupplyVolume": "Supply Volume",
+
+  "aboutFooterTitle": "About Agri Forecast",
+  "aboutFooterContent": "Agri Forecast provides accurate price forecasting for agri-horticultural commodities through advanced AI-ML models. Our goal is to offer reliable market insights to farmers, traders, and policymakers.",
+  "quickLinksTitle": "Quick Links",
+  "privacyPolicy": "Privacy Policy",
+  "followUs": "Follow Us",
+  "facebook": "Facebook",
+  "twitter": "Twitter",
+  "instagram": "Instagram",
+  "linkedin": "LinkedIn",
+  "allRightsReserved": "All rights reserved.",
+
+  "aboutUsTitle": "About Us",
+  "aboutUsIntroduction": "We are a dedicated team focused on providing accurate price forecasting for agri-horticultural commodities. Our goal is to equip farmers, traders, and analysts with the tools needed for informed decision-making.",
+  "missionTitle": "Our Mission",
+  "missionStatement": "We aim to revolutionize the agriculture sector with data-driven insights and advanced AI-ML models, ensuring a stable and prosperous future for all stakeholders.",
+
+  "inputForm": {
+    "title": "Enter Crop Details",
+    "label": "Crop Type",
+    "ariaLabel": "Select a crop",
+    "select": "Select a Crop",
+    "date": "Month",
+    "state": "State",
+    "district": "District",
+    "season": {
+      "label": "Season",
+      "rabi": "Rabi",
+      "kharif": "Kharif"
+    },
+    "pestInfestation": "Pest Infestation (0-10 Scale)",
+    "marketCompetition": "Market Competition (0-10 Scale)",
+    "temperature": "Temperature (°C)",
+    "rainfall": "Rainfall (mm)",
+    "supply_volume": "Supply Volume (Tons)",
+    "demand_volume": "Demand Volume (Tons)",
+    "transportation_cost": "Transportation Cost (INR)",
+    "fertilizers_used": "Fertilizers Used (Tons)",
+    "pest_infestation": "Pest Infestation (0-10 Scale)",
+    "market_competition": "Market Competition (0-10 Scale)",
+    "price_per_kg": "Price per kg (INR)",
+    "submit": "Get Forecast",
+    "reset": "Reset Form"
+  },
+
+  "crops": {
+    "rice": "Rice",
+    "onion": "Onion"
+  },
+
+  "forecastReport1": {
+    "actualLine": "Actual Price",
+    "forecastLine": "Forecast Price",
+    "title": "Forecast Report",
+    "cropLabel": "Crop: {{crop}}",
+    "predictedPrice": "Predicted Price: {{price}}",
+    "shareButton": "Share",
+    "shareTitle": "Forecast for {{crop}}",
+    "shareText": "Here is the forecast report for {{crop}}.",
+    "shareSuccess": "Shared successfully!",
+    "shareError": "Error sharing: {{error}}",
+    "shareNotSupported": "Share not supported on this device.",
+    "noData": "No data available"
+  },
+
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist."
+  },
+
+  "contact1": {
+    "title": "Contact Us",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "placeholders": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message"
+    },
+    "submitButton": "Send Message",
+    "messageSent": "Message successfully sent!"
+  },
+
+  "login1": {
+    "title": "Log In as {{role}}",
+    "roleLabel": "Select Your Role",
+    "roles": {
+      "user": "User",
+      "farmer": "Farmer",
+      "admin": "Admin"
+    },
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your Email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Your Password",
+    "submitButton": "Log In as {{role}}"
+  },
+
+  "signup": {
+    "title": "Sign Up as {{role}}",
+    "roleLabel": "Select Your Role",
+    "roles": {
+      "user": "User",
+      "farmer": "Farmer",
+      "admin": "Admin"
+    },
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your Email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Your Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "submitButton": "Sign Up as {{role}}"
+  }
+}
