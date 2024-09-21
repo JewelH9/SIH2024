@@ -1,43 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
+  const { t } = useTranslation(); // Initialize translation hook
+
   return (
     <footer className="bg-gray-800 text-white rounded-lg py-8 mt-8">
       <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* About Section */}
         <div>
-          <h4 className="text-xl font-bold mb-4">About Agri Forecast</h4>
+          <h4 className="text-xl font-bold mb-4">{t("footer.aboutTitle")}</h4>
           <p className="text-gray-400">
-            Agri Forecast is a platform that leverages AI-ML models to provide
-            accurate price predictions for agri-horticultural commodities. We
-            aim to empower farmers, traders, and policymakers with reliable
-            market insights.
+            {t("footer.aboutDescription")}
           </p>
         </div>
 
         {/* Quick Links Section */}
         <div>
-          <h4 className="text-xl font-bold mb-4">Quick Links</h4>
+          <h4 className="text-xl font-bold mb-4">{t("footer.quickLinksTitle")}</h4>
           <ul className="text-gray-400 space-y-2">
             <li>
               <Link to="/" className="hover:text-white">
-                Home
+                {t("footer.home")}
               </Link>
             </li>
             <li>
               <Link to="/about" className="hover:text-white">
-                About Us
+                {t("footer.about")}
               </Link>
             </li>
             <li>
               <Link to="/contact" className="hover:text-white">
-                Contact
+                {t("footer.contact")}
               </Link>
             </li>
             <li>
               <Link to="/privacy" className="hover:text-white">
-                Privacy Policy
+                {t("footer.privacyPolicy")}
               </Link>
             </li>
           </ul>
@@ -45,7 +45,7 @@ function Footer() {
 
         {/* Social Media Section */}
         <div>
-          <h4 className="text-xl font-bold mb-4">Follow Us</h4>
+          <h4 className="text-xl font-bold mb-4">{t("footer.followUsTitle")}</h4>
           <div className="flex space-x-4">
             <a
               href="https://facebook.com"
@@ -54,7 +54,7 @@ function Footer() {
             >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                alt="Facebook"
+                alt={t("footer.facebook")}
                 className="w-8 h-8 hover:opacity-75"
               />
             </a>
@@ -65,7 +65,7 @@ function Footer() {
             >
               <img
                 src="https://cdn4.iconfinder.com/data/icons/social-media-black-white-2/1227/X-256.png"
-                alt="Twitter"
+                alt={t("footer.twitter")}
                 className="w-8 h-8 hover:opacity-75"
               />
             </a>
@@ -76,7 +76,7 @@ function Footer() {
             >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-                alt="Instagram"
+                alt={t("footer.instagram")}
                 className="w-8 h-8 hover:opacity-75"
               />
             </a>
@@ -87,7 +87,7 @@ function Footer() {
             >
               <img
                 src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Linkedin_unofficial_colored_svg-512.png"
-                alt="LinkedIn"
+                alt={t("footer.linkedin")}
                 className="w-8 h-8 hover:opacity-75"
               />
             </a>
@@ -96,7 +96,7 @@ function Footer() {
       </div>
 
       <div className="mt-8 text-center text-gray-500">
-        &copy; 2024 Agri Forecast. All Rights Reserved.
+        &copy; 2024 {t("footer.companyName")}. {t("footer.rightsReserved")}
       </div>
     </footer>
   );
