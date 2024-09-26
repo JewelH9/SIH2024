@@ -1,11 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next"; // Import useTranslation
 import Footer from "./Footer";
+import FAQs from "./FAQ";
+import Modal from "./Modal";
 
 function HomePage() {
   const { t } = useTranslation(); // Initialize translation
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
+
+  const resources = [
+    {
+      title: t("resources.bestPractices"),
+      link: "https://eird.org/pr14/cd/documentos/espanol/CaribeHerramientasydocumentos/Agricultura/oxfamguideagriculture2014eng.pdf",
+    },
+    {
+      title: t("resources.cropManagement"),
+      link: "https://icar.org.in/sites/default/files/inline-files/crop-management-AR-2011-12_1.pdf",
+    },
+    {
+      title: t("resources.weatherPatterns"),
+      link: "https://www.nios.ac.in/media/documents/316courseE/ch17.pdf",
+    },
+    {
+      title: t("resources.tradingStrategies"),
+      link: "https://www.investopedia.com/articles/forex/031015/guide-agricultural-trading-strategies.asp",
+    },
+    {
+      title: t("resources.marketAnalysis"),
+      link: "https://www.marketwatch.com/story/how-to-analyze-agricultural-stocks-2020-01-23",
+    },
+    {
+      title: t("resources.commodityMarkets"),
+      link: "https://www.cmegroup.com/education/understanding-commodity-markets.html",
+    },
+    {
+      title: t("resources.agriculturalInvestments"),
+      link: "https://www.forbes.com/sites/greatspeculations/2021/05/27/agricultural-investments-a-rising-trend/",
+    },
+  ];
 
   return (
     <section className="mb-8">
@@ -17,18 +51,22 @@ function HomePage() {
         transition={{ duration: 0.5 }}
       >
         <div className="container mx-auto px-6 md:px-12">
-          <h1 className="text-4xl font-bold mb-4">
-            {t("welcome_message")} {/* Translated welcome message */}
-          </h1>
-          <p className="text-lg mb-6">
-            {t("description")} {/* Translated description */}
-          </p>
-          <Link
-            to="/input"
-            className="bg-white text-blue-800 py-2 px-4 rounded-md hover:bg-gray-100"
-          >
-            {t("get_started")} {/* Translated button text */}
-          </Link>
+          <h1 className="text-4xl font-bold mb-4">{t("welcome_message")}</h1>
+          <p className="text-lg mb-6">{t("description")}</p>
+          <div className="flex space-x-4">
+            <Link
+              to="/input"
+              className="bg-white text-blue-800 py-2 px-4 rounded-md hover:bg-gray-100"
+            >
+              {t("get_started")}
+            </Link>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-white text-blue-800 py-2 px-4 rounded-md hover:bg-gray-100"
+            >
+              {t("download_resources")}
+            </button>
+          </div>
         </div>
       </motion.div>
 
@@ -111,11 +149,13 @@ function HomePage() {
         transition={{ duration: 0.5, delay: 0.5 }}
       >
         <div>
-          <h2 className="text-3xl font-bold mb-6">{t("key_features")}</h2> {/* Translated title */}
+          <h2 className="text-3xl font-bold mb-6">{t("key_features")}</h2>{" "}
+          {/* Translated title */}
           <ul className="list-disc list-inside text-gray-800 space-y-2">
             <li>{t("feature_forecasting")}</li> {/* Translated feature */}
             <li>{t("feature_data_input")}</li> {/* Translated feature */}
-            <li>{t("feature_historical_analysis")}</li> {/* Translated feature */}
+            <li>{t("feature_historical_analysis")}</li>{" "}
+            {/* Translated feature */}
             <li>{t("feature_report_generation")}</li> {/* Translated feature */}
             <li>{t("feature_user_friendly")}</li> {/* Translated feature */}
           </ul>
@@ -145,7 +185,8 @@ function HomePage() {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold mb-6">{t("how_it_works")}</h2> {/* Translated title */}
+            <h2 className="text-3xl font-bold mb-6">{t("how_it_works")}</h2>{" "}
+            {/* Translated title */}
             <ol className="list-decimal list-inside text-gray-800 space-y-2">
               <li>{t("step_enter_data")}</li> {/* Translated step */}
               <li>{t("step_submit_data")}</li> {/* Translated step */}
@@ -155,6 +196,12 @@ function HomePage() {
           </div>
         </div>
       </motion.div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        resources={resources}
+      />
 
       {/* Testimonials Section */}
       <motion.div
@@ -171,22 +218,33 @@ function HomePage() {
             <p className="text-gray-800 mb-4">
               "{t("testimonial_1")}" {/* Translated testimonial */}
             </p>
-            <p className="text-blue-800 font-bold">{t("testimonial_1_author")}</p> {/* Translated author */}
+            <p className="text-blue-800 font-bold">
+              {t("testimonial_1_author")}
+            </p>{" "}
+            {/* Translated author */}
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <p className="text-gray-800 mb-4">
               "{t("testimonial_2")}" {/* Translated testimonial */}
             </p>
-            <p className="text-blue-800 font-bold">{t("testimonial_2_author")}</p> {/* Translated author */}
+            <p className="text-blue-800 font-bold">
+              {t("testimonial_2_author")}
+            </p>{" "}
+            {/* Translated author */}
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
             <p className="text-gray-800 mb-4">
               "{t("testimonial_3")}" {/* Translated testimonial */}
             </p>
-            <p className="text-blue-800 font-bold">{t("testimonial_3_author")}</p> {/* Translated author */}
+            <p className="text-blue-800 font-bold">
+              {t("testimonial_3_author")}
+            </p>{" "}
+            {/* Translated author */}
           </div>
         </div>
       </motion.div>
+
+      <FAQs />
 
       {/* Footer */}
       <Footer />

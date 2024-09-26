@@ -6,21 +6,49 @@ function AboutUs() {
   const { t } = useTranslation();
 
   const teamMembers = [
-    { name: "JEWEL HOSSAIN", role: "Data Scientist", imgSrc: "https://via.placeholder.com/150" },
-    { name: "Jane Smith", role: "Software Engineer", imgSrc: "https://via.placeholder.com/150" },
-    { name: "Raj Patel", role: "Market Analyst", imgSrc: "https://via.placeholder.com/150" },
-    { name: "Emily Johnson", role: "AI Specialist", imgSrc: "https://via.placeholder.com/150" },
-    { name: "Michael Lee", role: "Full-Stack Developer", imgSrc: "https://via.placeholder.com/150" },
-    { name: "Sophia Martinez", role: "Project Manager", imgSrc: "https://via.placeholder.com/150" },
+    {
+      name: "JEWEL HOSSAIN",
+      role: "TEAM LEAD, FULL-STACK DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
+    {
+      name: "SOHAM BHATTACHARYYA",
+      role: "AIML DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
+    {
+      name: "SUBHAMITA BANIK",
+      role: "AIML DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
+    {
+      name: "MD. AZAM",
+      role: "BACK-END DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
+    {
+      name: "TANVEER HOSSAIN",
+      role: "DATABASE DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
+    {
+      name: "TRIDIB BAG",
+      role: "BACK-END DEVELOPER",
+      imgSrc:
+        "https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
+    },
   ];
 
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-4xl font-bold mb-8">{t('aboutUsTitle')}</h2>
-        <p className="text-lg text-gray-700 mb-12">
-          {t('aboutUsDescription')}
-        </p>
+        <h2 className="text-4xl font-bold mb-8">{t("aboutUsTitle")}</h2>
+        <p className="text-lg text-gray-700 mb-12">{t("aboutUsDescription")}</p>
 
         {/* Mission Statement */}
         <motion.div
@@ -29,10 +57,8 @@ function AboutUs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-2xl font-semibold mb-4">{t('ourMission')}</h3>
-          <p className="text-gray-700">
-            {t('missionDescription')}
-          </p>
+          <h3 className="text-2xl font-semibold mb-4">{t("ourMission")}</h3>
+          <p className="text-gray-700">{t("missionDescription")}</p>
         </motion.div>
 
         {/* Team Members */}
