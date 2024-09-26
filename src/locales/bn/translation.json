@@ -89,6 +89,7 @@
   "recommendedStock": "প্রস্তাবিত স্টক",
   "userSupplyVolume": "আপনার সরবরাহের পরিমাণ",
   "reset": "রিসেট",
+  "bufferStockGraphTitle":"বাফার স্টক গ্রাফ",
 
   "footer": {
     "aboutTitle": "অ্যাগ্রি ফরকাস্ট সম্পর্কে",
@@ -151,7 +152,7 @@
 
   "forecastReport1": {
     "title": "ফোরকাস্ট রিপোর্ট",
-    "cropLabel": "ফসলের নাম",
+    "cropLabel": "ফসলের নাম: ভাত",
     "seasonLabel": "মৌসুম",
     "predictedPriceLabel": "পূর্বাভাসিত দাম",
     "recommendedStockLabel": "প্রস্তাবিত স্টক"

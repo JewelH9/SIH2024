@@ -25,7 +25,7 @@ function CropPriceVisualization() {
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("New Delhi");
 
-  // Graph types with "Market Price" set to show for 12 months
+  // Updated graph types without "Wind Gust" and "Feels Like"
   const graphTypes = [
     { name: "Market Price", dataKey: "market_price", color: "#f39c12" }, // Show 12 months
     { name: "Temperature", dataKey: "temp_c", color: "#82ca9d" }, // Show until September
@@ -34,8 +34,6 @@ function CropPriceVisualization() {
     { name: "Precipitation", dataKey: "precip_mm", color: "#ffc658" }, // Show until September
     { name: "UV Index", dataKey: "uv", color: "#ff6666" }, // Show until September
     { name: "Cloud Cover", dataKey: "cloud", color: "#cccccc" }, // Show until September
-    { name: "Wind Gust", dataKey: "gust_mph", color: "#ffccff" }, // Show until September
-    { name: "Feels Like", dataKey: "feelslike_c", color: "#ffb3b3" }, // Show until September
     { name: "Dew Point", dataKey: "dewpoint_c", color: "#b3e0ff" }, // Show until September
   ];
 
@@ -89,8 +87,6 @@ function CropPriceVisualization() {
             precip_mm: day.totalprecip_mm,
             uv: day.uv,
             cloud: day.avghumidity,
-            gust_mph: day.maxwind_mph,
-            feelslike_c: day.avgtemp_c,
             dewpoint_c: day.avgtemp_c,
             market_price: marketPriceData.records[index]?.modal_price || 0, // Adding market price data (only for months covered by the data)
           };
@@ -103,8 +99,6 @@ function CropPriceVisualization() {
             precip_mm: null,
             uv: null,
             cloud: null,
-            gust_mph: null,
-            feelslike_c: null,
             dewpoint_c: null,
             market_price: marketPriceData.records[index]?.modal_price || 0, // Ensure market price is filled for missing weather data
           };
@@ -253,7 +247,7 @@ function CropPriceVisualization() {
               </div>
             ))
           ) : (
-            <p>No graphs found for the entered search term.</p>
+            <div>No graph types match your search.</div>
           )}
         </div>
       )}

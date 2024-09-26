@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 function ForecastReport() {
   const { t } = useTranslation();
   const location = useLocation();
-  const [predictedPrice, setPredictedPrice] = useState(30);
+  const [predictedPrice, setPredictedPrice] = useState(30.224524);
   const [selectedCrop, setSelectedCrop] = useState("Dummy Crop");
   const [graphType, setGraphType] = useState("line");
 

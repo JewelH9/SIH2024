@@ -89,6 +89,7 @@
   "recommendedStock": "अनुशंसित स्टॉक",
   "userSupplyVolume": "आपकी आपूर्ति मात्रा",
   "reset": "रीसेट",
+  "bufferStockGraphTitle":"बफ़र स्टॉक ग्राफ",
 
   "footer": {
     "aboutTitle": "कृषि पूर्वानुमान के बारे में",
@@ -151,7 +152,7 @@
 
   "forecastReport1": {
     "title": "पूर्वानुमान रिपोर्ट",
-    "cropLabel": "फसल: {{crop}}",
+    "cropLabel": "फसल: चावल",
     "actualLine": "वास्तविक मूल्य",
     "forecastLine": "पूर्वानुमान मूल्य",
     "predictedPrice": "पूर्वानुमानित मूल्य: {{price}}",

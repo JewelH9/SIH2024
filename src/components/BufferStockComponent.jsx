@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 // List of Indian states
 const indianStates = [
@@ -35,8 +45,6 @@ const indianStates = [
 
 const BufferStockComponent = () => {
   const { t } = useTranslation();
-
-  // State for all the fields
   const [commodity, setCommodity] = useState("");
   const [currentStock, setCurrentStock] = useState("");
   const [supplyVolume, setSupplyVolume] = useState("");
@@ -44,22 +52,17 @@ const BufferStockComponent = () => {
   const [state, setState] = useState("");
   const [district, setDistrict] = useState("");
   const [season, setSeason] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [rainfall, setRainfall] = useState("");
   const [transportationCost, setTransportationCost] = useState("");
-  const [fertilizersUsed, setFertilizersUsed] = useState("");
-  const [pestInfestation, setPestInfestation] = useState("");
-  const [marketCompetition, setMarketCompetition] = useState("");
   const [pricePerKg, setPricePerKg] = useState("");
   const [predictionResult, setPredictionResult] = useState(null);
   const [error, setError] = useState("");
+  const [graphData, setGraphData] = useState([]);
 
   // Retrieve values from localStorage and set states
   useEffect(() => {
-    const savedFormData = localStorage.getItem('inputFormData');
+    const savedFormData = localStorage.getItem("inputFormData");
     if (savedFormData) {
       const parsedData = JSON.parse(savedFormData);
-      console.log('Retrieved form data from localStorage:', parsedData);
       setCommodity(parsedData.commodity || "");
       setCurrentStock(parsedData.currentStock || "");
       setSupplyVolume(parsedData.supplyVolume || "");
@@ -67,12 +70,7 @@ const BufferStockComponent = () => {
       setState(parsedData.state || "");
       setDistrict(parsedData.district || "");
       setSeason(parsedData.season || "");
-      setTemperature(parsedData.temperature || "");
-      setRainfall(parsedData.rainfall || "");
       setTransportationCost(parsedData.transportationCost || "");
-      setFertilizersUsed(parsedData.fertilizersUsed || "");
-      setPestInfestation(parsedData.pestInfestation || "");
-      setMarketCompetition(parsedData.marketCompetition || "");
       setPricePerKg(parsedData.pricePerKg || "");
     }
   }, []);
@@ -87,19 +85,13 @@ const BufferStockComponent = () => {
       state,
       district,
       season,
-      temperature,
-      rainfall,
       transportationCost,
-      fertilizersUsed,
-      pestInfestation,
-      marketCompetition,
       pricePerKg,
     };
 
-    localStorage.setItem('inputFormData', JSON.stringify(formData));
+    localStorage.setItem("inputFormData", JSON.stringify(formData));
   };
 
-  // Update state and save to localStorage on field change
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
     saveToLocalStorage();
@@ -112,7 +104,7 @@ const BufferStockComponent = () => {
 
     // Validate fields
     if (!commodity || !currentStock || !supplyVolume || !demandVolume) {
-      setError(t('error'));
+      setError(t("error"));
       return;
     }
 
@@ -127,8 +119,24 @@ const BufferStockComponent = () => {
 
     setPredictionResult({
       ...dummyPrediction,
-      userSupplyVolume: supplyVolume
+      userSupplyVolume: supplyVolume,
     });
+
+    // Populate graph data
+    const newGraphData = [
+      { name: "Week 1", stock: 80, constant: 150 },
+      { name: "Week 2", stock: 137, constant: 150 },
+      { name: "Week 3", stock: 99, constant: 150 },
+      { name: "Week 4", stock: 111, constant: 150 },
+      { name: "Week 5", stock: 100, constant: 150 },
+      { name: "Week 6", stock: 139, constant: 150 },
+      { name: "Week 7", stock: 117, constant: 150 },
+      { name: "Week 8", stock: 175, constant: 150 },
+      { name: "Week 9", stock: 100, constant: 150 },
+      { name: "Week 10", stock: 70, constant: 150 },
+    ];
+
+    setGraphData(newGraphData);
   };
 
   const handleReset = () => {
@@ -139,22 +147,18 @@ const BufferStockComponent = () => {
     setState("");
     setDistrict("");
     setSeason("");
-    setTemperature("");
-    setRainfall("");
     setTransportationCost("");
-    setFertilizersUsed("");
-    setPestInfestation("");
-    setMarketCompetition("");
     setPricePerKg("");
     setPredictionResult(null);
     setError("");
-    localStorage.removeItem('inputFormData');
+    setGraphData([]); // Clear graph data on reset
+    localStorage.removeItem("inputFormData");
   };
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-gray-800 text-center">
-        {t('bufferStockTitle')}
+        {t("bufferStockTitle")}
       </h1>
 
       {error && (
@@ -166,21 +170,27 @@ const BufferStockComponent = () => {
       <form onSubmit={handleSubmit}>
         {/* Commodity */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('commodity')}</label>
+          <label className="block text-sm font-semibold">
+            {t("commodity")}
+          </label>
           <select
             value={commodity}
             onChange={handleInputChange(setCommodity)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
           >
-            <option value="" disabled>{t('selectCommodity')}</option>
-            <option value="Rice">{t('rice')}</option>
-            <option value="Onion">{t('onion')}</option>
+            <option value="" disabled>
+              {t("selectCommodity")}
+            </option>
+            <option value="Rice">{t("rice")}</option>
+            <option value="Onion">{t("onion")}</option>
           </select>
         </div>
 
         {/* Current Stock */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('currentStock')}</label>
+          <label className="block text-sm font-semibold">
+            {t("currentStock")}
+          </label>
           <input
             type="text"
             value={currentStock}
@@ -191,48 +201,52 @@ const BufferStockComponent = () => {
 
         {/* Supply Volume */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('supplyVolume')}</label>
+          <label className="block text-sm font-semibold">
+            {t("supplyVolume")}
+          </label>
           <input
-            type="number"
+            type="text"
             value={supplyVolume}
             onChange={handleInputChange(setSupplyVolume)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('supplyVolumePlaceholder')}
-            required
           />
         </div>
 
         {/* Demand Volume */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('demandVolume')}</label>
+          <label className="block text-sm font-semibold">
+            {t("demandVolume")}
+          </label>
           <input
-            type="number"
+            type="text"
             value={demandVolume}
             onChange={handleInputChange(setDemandVolume)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('demandVolumePlaceholder')}
-            required
           />
         </div>
 
         {/* State */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('state')}</label>
+          <label className="block text-sm font-semibold">{t("state")}</label>
           <select
             value={state}
             onChange={handleInputChange(setState)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
           >
-            <option value="" disabled>{t('selectState')}</option>
-            {indianStates.map((stateName) => (
-              <option key={stateName} value={stateName}>{stateName}</option>
+            <option value="" disabled>
+              {t("selectState")}
+            </option>
+            {indianStates.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
             ))}
           </select>
         </div>
 
         {/* District */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('district')}</label>
+          <label className="block text-sm font-semibold">{t("district")}</label>
           <input
             type="text"
             value={district}
@@ -243,119 +257,109 @@ const BufferStockComponent = () => {
 
         {/* Season */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('season')}</label>
+          <label className="block text-sm font-semibold">{t("season")}</label>
           <select
             value={season}
             onChange={handleInputChange(setSeason)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
           >
-            <option value="" disabled>{t('selectSeason')}</option>
-            <option value="Rabi">{t('rabi')}</option>
-            <option value="Kharif">{t('kharif')}</option>
+            <option value="" disabled>
+              {t("selectSeason")}
+            </option>
+            <option value="Rabi">{t("rabi")}</option>
+            <option value="Kharif">{t("kharif")}</option>
           </select>
-        </div>
-
-        {/* Temperature */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('temperature')}</label>
-          <input
-            type="number"
-            value={temperature}
-            onChange={handleInputChange(setTemperature)}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('temperaturePlaceholder')}
-          />
-        </div>
-
-        {/* Rainfall */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('rainfall')}</label>
-          <input
-            type="number"
-            value={rainfall}
-            onChange={handleInputChange(setRainfall)}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('rainfallPlaceholder')}
-          />
         </div>
 
         {/* Transportation Cost */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('transportationCost')}</label>
+          <label className="block text-sm font-semibold">
+            {t("transportationCost")}
+          </label>
           <input
-            type="number"
+            type="text"
             value={transportationCost}
             onChange={handleInputChange(setTransportationCost)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('transportationCostPlaceholder')}
-          />
-        </div>
-
-        {/* Fertilizers Used */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('fertilizersUsed')}</label>
-          <input
-            type="number"
-            value={fertilizersUsed}
-            onChange={handleInputChange(setFertilizersUsed)}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('fertilizersUsedPlaceholder')}
-          />
-        </div>
-
-        {/* Pest Infestation */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('pestInfestation')}</label>
-          <input
-            type="number"
-            value={pestInfestation}
-            onChange={handleInputChange(setPestInfestation)}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('pestInfestationPlaceholder')}
-          />
-        </div>
-
-        {/* Market Competition */}
-        <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('marketCompetition')}</label>
-          <input
-            type="number"
-            value={marketCompetition}
-            onChange={handleInputChange(setMarketCompetition)}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('marketCompetitionPlaceholder')}
           />
         </div>
 
         {/* Price per kg */}
         <div className="mb-4">
-          <label className="block text-sm font-semibold">{t('pricePerKg')}</label>
+          <label className="block text-sm font-semibold">
+            {t("pricePerKg")}
+          </label>
           <input
-            type="number"
+            type="text"
             value={pricePerKg}
             onChange={handleInputChange(setPricePerKg)}
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 transition"
-            placeholder={t('pricePerKgPlaceholder')}
           />
         </div>
 
-        <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500 transition">
-          {t('predict')}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white font-semibold p-2 rounded-md transition hover:bg-blue-500"
+        >
+          {t("predict")}
         </button>
       </form>
 
-      {/* Prediction result */}
       {predictionResult && (
-        <div className="mt-4 p-4 border border-gray-300 rounded-md bg-gray-50">
-          <h2 className="font-semibold">{t('predictionResultTitle')}</h2>
-          <p>{t('predictedPrice')}: ₹{predictionResult.price}</p>
-          <p>{t('recommendedStock')}: {predictionResult.recommendedStock} kg</p>
-          <p>{t('userSupplyVolume')}: {predictionResult.userSupplyVolume} kg</p>
+        <div className="mt-4">
+          <h2 className="font-semibold">{t("predictionResultTitle")}</h2>
+          <p>
+            {t("predictedPrice")}: {predictionResult.price} INR
+          </p>
+          <p>
+            {t("recommendedStock")}: {predictionResult.recommendedStock} Tons
+          </p>
+          <p>
+            {t("userSupplyVolume")}: {predictionResult.userSupplyVolume} Tons
+          </p>
         </div>
       )}
 
-      <button onClick={handleReset} className="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-500 transition">
-        {t('reset')}
+      {graphData.length > 0 && (
+        <div className="mt-4">
+          <h2 className="font-semibold">{t("bufferStockGraphTitle")}</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={graphData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                  label={{
+                    value: "Price (INR)",
+                    angle: -90,
+                    position: "insideLeft",
+                  }}
+                />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="stock"
+                stroke="#8884d8"
+                activeDot={{ r: 8 }}
+                connectNulls
+              />
+              <Line
+                type="monotone"
+                dataKey="constant"
+                stroke="#82ca9d"
+                name="Critical Point" // Updated label name for the legend
+                connectNulls
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+
+      <button
+        onClick={handleReset}
+        className="mt-4 w-full bg-red-600 text-white font-semibold p-2 rounded-md transition hover:bg-red-500"
+      >
+        {t("reset")}
       </button>
     </div>
   );

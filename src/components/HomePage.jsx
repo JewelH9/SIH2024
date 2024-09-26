@@ -5,6 +5,15 @@ import { useTranslation } from "react-i18next"; // Import useTranslation
 import Footer from "./Footer";
 import FAQs from "./FAQ";
 import Modal from "./Modal";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts"; // Import Recharts components
 
 function HomePage() {
   const { t } = useTranslation(); // Initialize translation
@@ -38,6 +47,65 @@ function HomePage() {
     {
       title: t("resources.agriculturalInvestments"),
       link: "https://www.forbes.com/sites/greatspeculations/2021/05/27/agricultural-investments-a-rising-trend/",
+    },
+  ];
+
+  // Expanded dummy data for graphs with crops
+  const monthlyPriceTrendsData = [
+    { month: "Jan", Wheat: 85, Rice: 75 },
+    { month: "Feb", Wheat: 92, Rice: 81 },
+    { month: "Mar", Wheat: 78, Rice: 90 },
+    { month: "Apr", Wheat: 88, Rice: 60 },
+    { month: "May", Wheat: 95, Rice: 85 },
+    { month: "Jun", Wheat: 80, Rice: 75 },
+    { month: "Jul", Wheat: 90, Rice: 95 },
+    { month: "Aug", Wheat: 70, Rice: 50 },
+    { month: "Sep", Wheat: 88, Rice: 75 },
+    { month: "Oct", Wheat: 94, Rice: 83 },
+    { month: "Nov", Wheat: 76, Rice: 80 },
+    { month: "Dec", Wheat: 82, Rice: 90 },
+  ];
+
+  const yieldVsPesticideUsageData = [
+    {
+      pesticide: "No Pesticide",
+      Wheat: 90,
+      Rice: 95,
+      Corn: 100,
+      Soybean: 65,
+      Barley: 48,
+    },
+    {
+      pesticide: "Low",
+      Wheat: 80,
+      Rice: 85,
+      Corn: 80,
+      Soybean: 78,
+      Barley: 80,
+    },
+    {
+      pesticide: "Medium",
+      Wheat: 70,
+      Rice: 45,
+      Corn: 74,
+      Soybean: 62,
+      Barley: 60,
+    },
+    {
+      pesticide: "High",
+      Wheat: 55,
+      Rice: 60,
+      Corn: 68,
+      Soybean: 50,
+      Barley: 50,
+    },
+    {
+      pesticide: "Very High",
+      Wheat: 40,
+      Rice: 45,
+      Corn: 52,
+      Soybean: 40,
+      Barley: 35,
     },
   ];
 
@@ -117,11 +185,43 @@ function HomePage() {
             <h3 className="text-xl font-bold mb-4">
               {t("monthly_price_trends")} {/* Translated subheading */}
             </h3>
-            <img
-              src="https://www.researchgate.net/publication/256534576/figure/fig3/AS:667859030122497@1536241409040/Agricultural-commodity-prices-index-monthly-1990-January-2011-May-2000-100.png"
-              alt={t("monthly_price_trends")} // Alt text for accessibility
-              className="w-full h-auto rounded-lg"
-            />
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={monthlyPriceTrendsData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="month"
+                  label={{
+                    value: "Months",
+                    position: "insideBottom",
+                    offset: -5,
+                  }}
+                />
+                <YAxis
+                  label={{
+                    value: "Price (INR)",
+                    angle: -90,
+                    position: "insideLeft",
+                  }}
+                />
+                <Tooltip />
+
+                {/* Rendering a line for each crop */}
+                <Line
+                  type="monotone"
+                  dataKey="Wheat"
+                  stroke="#ff7300"
+                  name="Wheat"
+                  connectNulls
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Rice"
+                  stroke="#8884d8"
+                  name="Rice"
+                  connectNulls
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </motion.div>
           <motion.div
             className="bg-white rounded-lg shadow-md p-6"
@@ -132,11 +232,64 @@ function HomePage() {
             <h3 className="text-xl font-bold mb-4">
               {t("yield_vs_pesticide_usage")} {/* Translated subheading */}
             </h3>
-            <img
-              src="https://www.researchgate.net/publication/349590623/figure/fig2/AS:995060489412609@1614252316451/Percentages-of-global-pesticide-use-Modified-from-De-et-al-49-Sharma-et-al-50.png"
-              alt={t("yield_vs_pesticide_usage")} // Alt text for accessibility
-              className="w-full h-auto rounded-lg"
-            />
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={yieldVsPesticideUsageData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="pesticide"
+                  label={{
+                    value: "Pesticide Usage (liters/ha)",
+                    position: "insideBottom",
+                    offset: -5,
+                  }}
+                />
+                <YAxis
+                  label={{
+                    value: "Yield (tons/ha)",
+                    angle: -90,
+                    position: "insideLeft",
+                  }}
+                />
+                <Tooltip />
+
+                {/* Rendering a line for each crop based on pesticide usage */}
+                <Line
+                  type="monotone"
+                  dataKey="Wheat"
+                  stroke="#82ca9d"
+                  name="Wheat"
+                  connectNulls
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Rice"
+                  stroke="#8884d8"
+                  name="Rice"
+                  connectNulls
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Corn"
+                  stroke="#ff7300"
+                  name="Corn"
+                  connectNulls
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Soybean"
+                  stroke="#c72c91"
+                  name="Soybean"
+                  connectNulls
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Barley"
+                  stroke="#0074d9"
+                  name="Barley"
+                  connectNulls
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </motion.div>
         </div>
       </motion.div>
@@ -244,7 +397,15 @@ function HomePage() {
         </div>
       </motion.div>
 
+      {/* FAQs Section */}
       <FAQs />
+
+      {/* Modal for Download Resources */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        resources={resources}
+      />
 
       {/* Footer */}
       <Footer />

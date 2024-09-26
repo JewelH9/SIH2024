@@ -89,6 +89,7 @@
   "recommendedStock": "Recommended Stock",
   "userSupplyVolume": "Your Supply Volume",
   "reset": "Reset",
+  "bufferStockGraphTitle":"buffer Stock Graph",
 
   "footer": {
     "aboutTitle": "About Agri Forecast",
@@ -151,7 +152,7 @@
 
   "forecastReport1": {
     "title": "Forecast Report",
-    "cropLabel": "Crop: {{crop}}",
+    "cropLabel": "Crop: Rice",
     "actualLine": "Actual Price",
     "forecastLine": "Forecast Price",
     "predictedPrice": "Predicted Price: {{price}}",
